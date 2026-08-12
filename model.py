@@ -58,8 +58,20 @@ def split_train_val_test_indices(n_samples: int, val_fraction: float, test_fract
 
     return (train_idx, val_idx, test_idx)
 
-# Step 5 - count_word_frequencies (not yet solved)
-# TODO: implement
+# Step 5 - count_word_frequencies
+def count_word_frequencies(tokenized_docs: list) -> dict:
+    # TODO: Return a dict mapping each unique token to its total count...
+    keys = []
+    for doc in tokenized_docs:
+        for token in doc:
+            keys.append(token)
+
+    key_map = {}
+    set_of_keys = set(keys)
+    for key in set_of_keys:
+        key_map[key] = keys.count(key)
+
+    return dict(sorted(key_map.items(), key=lambda item: item[1], reverse=True))
 
 # Step 6 - build_vocabulary (not yet solved)
 # TODO: implement
