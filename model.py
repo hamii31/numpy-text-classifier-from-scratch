@@ -36,8 +36,27 @@ def tokenize_corpus(texts: list) -> list:
 
     return token_list
 
-# Step 4 - split_train_val_test_indices (not yet solved)
-# TODO: implement
+# Step 4 - split_train_val_test_indices
+import numpy as np
+def split_train_val_test_indices(n_samples: int, val_fraction: float, test_fraction: float, seed: int = 0) -> tuple:
+    # TODO: Produce shuffled index arrays that partition n_samples into train/val/test
+    rng = np.random.default_rng(seed)
+    shuffled = rng.permutation(n_samples)
+
+    start = 0
+    n_val = int(n_samples * val_fraction)
+    end = n_val
+    val_idx = shuffled[start:end]
+
+    start = end
+    n_test = int(n_samples * test_fraction)
+    end += n_test
+    test_idx = shuffled[start:end]
+
+    start = end
+    train_idx = shuffled[start:]
+
+    return (train_idx, val_idx, test_idx)
 
 # Step 5 - count_word_frequencies (not yet solved)
 # TODO: implement
