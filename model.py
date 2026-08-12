@@ -108,8 +108,19 @@ def corpus_to_bow_matrix(tokenized_docs: list, vocab: dict) -> np.ndarray:
 
     return np.array(matrix, dtype=float)
 
-# Step 9 - compute_document_frequencies (not yet solved)
-# TODO: implement
+# Step 9 - compute_document_frequencies
+def compute_document_frequencies(bow_matrix: np.ndarray) -> np.ndarray:
+    # TODO: Count docs where each term appears at least once (df, shape (V,))
+    df = []
+    N = bow_matrix.shape[0]
+    V = bow_matrix.shape[1]
+    for col in range(V):
+        count = 0
+        for row in range(N):
+            if bow_matrix[row][col] > 0:
+                count += 1
+        df.append(count)
+    return np.array(df)
 
 # Step 10 - compute_idf (not yet solved)
 # TODO: implement
